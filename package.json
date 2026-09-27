@@ -1,0 +1,12 @@
+{
+  "name": "24jam",
+  "main": "bot.js",
+  "scripts": { "start": "node bot.js" },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.18",
+    "moment-timezone": "^0.5.46",
+    "axios": "^1.7.2",
+    "gtts": "^0.2.1",
+    "pino": "^8.19.0"
+  }
+}
