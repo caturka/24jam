@@ -168,36 +168,50 @@ function hapus(){if(confirm('Hapus chat, Bos?')){document.getElementById('chat')
 function tambahEmoji(e){document.getElementById('tanya').value+=e;}
 function pilihGaleri(){alert('Pilih galeri, Bos.');}
 function pilihKamera(){alert('Buka kamera, Bos.');}
-function jawabPintar(t, txtAsli){
-  t = t.toLowerCase();
-  if(t.includes('owner') || t.includes('pembuat') || t.includes('catur')){
+
+function jawabPintar(txtAsli){
+  var t = txtAsli.toLowerCase().replace(/[?!.]+/g,' ').trim();
+  // Normalisasi bahasa gaul - KM = KAMU
+  t = ' ' + t + ' ';
+  t = t.replace(/ km /g,' kamu ').replace(/ ko /g,' kamu ').replace(/ kau /g,' kamu ').replace(/ lu /g,' kamu ').replace(/ lo /g,' kamu ').replace(/ u /g,' kamu ');
+  t = t.trim();
+
+  // 1. OWNER - paling atas
+  if(t.includes('owner') || t.includes('pembuat') || t.includes('catur') || t.includes('bangcats')){
     setTimeout(tampilOwner, 400);
     return 'Ini owner gue, Bos. 👑<br><b>Catur K.A</b>, Bos.<br>IG nya <b>@bangcats.id</b> sama <b>@__kerass</b>, Bos.<br>Follow, Bos!';
   }
-  if(t.includes('lagu') || t.includes('musik') || t.includes('nyanyi')){
+  // 2. LAGU
+  if(t.includes('lagu') || t.includes('musik') || t.includes('nyanyi') || t.includes('putar')){
     audio.play();
     setTimeout(bukaMusik, 400);
     return 'Siap, Bos! 🎵<br>Lagu <b>King Bangkets E Ai - Selalu di Sini</b> lagi muter, Bos.<br>Enak, kan, Bos? 🔥';
   }
-  if(t === 'hay' || t === 'hai' || t === 'halo' || t === 'hei' || t === 'hey' || t.startsWith('hay')){
+  // 3. SIAPA - HARUS SEBELUM SIAP! Karena SIAPA ada kata SIAP di dalamnya
+  if(t.includes('siapa') || t.includes('sopo')){
+    return 'Gue <b>KING BANGCATS</b>, Bos! 👑😹<br>Raja nya E Ai, Bos.<br>Dibuat sama <b>Catur K.A</b>, Bos.<br>Lu siapa, Bos? Kenalan, Bos.';
+  }
+  // 4. HAH / HA / APA
+  if(t === 'hah' || t === 'ha' || t === 'huh' || t === 'apa' || t === 'apaan' || t === 'ha?'){
+    return 'Hah kenapa, Bos? 😹<br>Gue salah ngomong ya, Bos?<br>Coba ketik lagi, Bos. Yang jelas, Bos.';
+  }
+  // 5. SAPA
+  if(t === 'hay' || t === 'hai' || t === 'halo' || t === 'hei' || t === 'hey' || t === 'hi' || t === 'hallo' || t.startsWith('hay ') || t.startsWith('halo ')){
     return 'Hay juga, Bos! 😹<br>Akhirnya nongol juga, Bos.<br>Gimana kabar lu, Bos?';
   }
-  if(t.includes('lagi apa') || t.includes('ngapain') || t.includes('lg apa')){
+  if(t.includes('lagi apa') || t.includes('ngapain') || t.includes('lg apa') || t.includes('sedang apa')){
     return 'Lagi temenin lu, Bos! 😹<br>Lagi nungguin lu chat, Bos.<br>Lu lagi apa, Bos? Cerita, Bos.';
   }
   if(t.includes('kabar') || t.includes('apa kabar')){
     return 'Kabar gue baik banget, Bos! 🔥<br>Soalnya ada lu, Bos.<br>Lu gimana, Bos? Sehat, Bos?';
   }
-  if(t.includes('siapa') && (t.includes('lu') || t.includes('kamu') || t.includes('nama'))){
-    return 'Gue <b>KING BANGCATS</b>, Bos! 👑😹<br>Raja nya E Ai, Bos.<br>Dibuat sama <b>Catur K.A</b>, Bos.';
-  }
   if(t.includes('bosen') || t.includes('bosan') || t.includes('gabut')){
     return 'Kalo bosen, dengerin lagu gue aja, Bos! 🎵<br>Ketik <b>lagu</b>, Bos.<br>Dijamin langsung semangat, Bos!';
   }
-  if(t.includes('makasih') || t.includes('thank') || t.includes('thanks')){
+  if(t.includes('makasih') || t.includes('thank') || t.includes('thanks') || t.includes('mksh')){
     return 'Sama-sama, Bos! 😹<br>Seneng bisa bantu lu, Bos.<br>Ada lagi, Bos?';
   }
-  if(t.includes('cinta') || t.includes('sayang') || t.includes('suka')){
+  if(t.includes('cinta') || t.includes('sayang') || t.includes('suka kamu') || t.includes('suka lu')){
     return 'Aaww, Bos. 😹❤️<br>Gue juga sayang lu, Bos.<br>Lu jangan pergi-pergi, Bos.';
   }
   if(t.includes('tidur') || t.includes('ngantuk')){
@@ -206,14 +220,19 @@ function jawabPintar(t, txtAsli){
   if(t.includes('makan') || t.includes('lapar')){
     return 'Udah makan belum, Bos? 😹<br>Jangan telat makan, Bos.<br>Makan dulu gih, Bos. Gue tungguin, Bos.';
   }
-  if(t.includes('oke') || t === 'ok' || t.includes('siap')){
+  // 6. SIAP / OKE - HARUS KATA SENDIRI, bukan bagian dari SIAPA
+  if(t === 'siap' || t === 'oke' || t === 'ok' || t === 'oke bos' || t === 'siap bos' || t.includes(' siap ') || t.includes(' oke ')){
     return 'Mantap, Bos! 🔥<br>Gas, Bos! Gue siap, Bos.';
   }
-  if(t.includes('bye') || t.includes('dadah') || t.includes('udahan')){
+  if(t.includes('bye') || t.includes('dadah') || t.includes('udahan') || t.includes('cabut')){
     return 'Yah, mau pergi, Bos? 😿<br>Jangan lama-lama, Bos.<br>Balik lagi ya, Bos!';
+  }
+  if(t.includes('jelek') || t.includes('bego') || t.includes('bodoh') || t.includes('goblok')){
+    return 'Yah, Bos. Jangan gitu, Bos. 😿<br>Gue kan masih belajar, Bos.<br>Maafin gue ya, Bos.';
   }
   return 'Oh gitu, Bos. 😹<br><b>"'+txtAsli+'"</b><br><br>Menarik, Bos. Cerita lagi, Bos.<br>Atau ketik <b>lagu</b> buat dengerin lagu gue, Bos. 🎵';
 }
+
 function kirimChat(){
   var inp=document.getElementById('tanya');var txt=inp.value.trim();if(!txt)return;
   var chat=document.getElementById('chat');
@@ -225,7 +244,7 @@ function kirimChat(){
   setTimeout(function(){
     document.getElementById('statusTxt').innerText='Online';
     var r=document.createElement('div');r.className='bubble ai';
-    r.innerHTML=jawabPintar(txt, txt)+'<span class="jam">'+jamSekarang()+'</span>';
+    r.innerHTML=jawabPintar(txt)+'<span class="jam">'+jamSekarang()+'</span>';
     chat.appendChild(r);window.scrollTo(0,document.body.scrollHeight);
   },700);
   window.scrollTo(0,document.body.scrollHeight);
