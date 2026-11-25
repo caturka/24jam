@@ -5,40 +5,36 @@
 <title>KING BANGCATS</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui;background:#0b141a;color:#e9edef;padding-bottom:150px;transition:0.3s}
-body.bg-ungu{background:linear-gradient(180deg,#2d0a4e,#0b141a)}
-body.bg-biru{background:linear-gradient(180deg,#0a2a4e,#0b141a)}
-body.bg-pink{background:linear-gradient(180deg,#4e0a2a,#0b141a)}
-body.bg-hutan{background:linear-gradient(180deg,#0a3d2a,#0b141a)}
+body{font-family:system-ui;background:#0b141a;color:#e9edef;padding-bottom:150px}
 .header{position:fixed;top:0;width:100%;background:#202c33;padding:6px;display:flex;align-items:center;gap:4px;z-index:10}
 .back{color:#aebac1;font-size:22px;background:none;border:none;padding:6px}
 .logo{width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0}
 .logo img{width:100%;height:100%;object-fit:cover}
-.tengah{flex:1;padding-left:4px}
-.tengah b{font-size:16px;font-weight:400}
+.tengah{flex:1;padding-left:4px;cursor:pointer;min-width:0}
+.tengah b{font-size:13px;font-weight:600;white-space:nowrap;display:flex;align-items:center;gap:4px;letter-spacing:.2px}
 .tengah span{font-size:12px;color:#8696a0;display:block}
 .btn-hapus{color:#aebac1;font-size:20px;background:none;border:none;padding:8px}
 #chat{padding:60px 10px 10px;display:flex;flex-direction:column;gap:6px;max-width:720px;margin:auto}
 .tgl{text-align:center;margin:8px 0}
 .tgl span{background:#182229;color:#8696a0;font-size:12px;padding:6px 10px;border-radius:8px}
-.bubble{padding:7px 8px 6px 9px;border-radius:8px;max-width:85%;font-size:15px;line-height:1.35;white-space:pre-wrap;box-shadow:0 1px 1px rgba(0,0,0,.3);word-wrap:break-word;overflow-wrap:break-word}
+.bubble{padding:7px 8px 6px 9px;border-radius:8px;max-width:85%;font-size:15px;line-height:1.35;white-space:pre-wrap;box-shadow:0 1px 1px rgba(0,0,0,.3);word-wrap:break-word}
 .ai{background:#202c33;align-self:flex-start;border-top-left-radius:0}
 .lu{background:#005c4b;align-self:flex-end;border-top-right-radius:0}
 .bubble img{width:100%;max-width:260px;border-radius:8px;display:block;margin-bottom:5px}
-.bubble audio{width:220px;display:block;margin-top:4px}
 .jam{font-size:11px;color:#8696a0;float:right;margin:8px 0 0 8px}
 .jam-lu{font-size:11px;color:#7fb3a8;float:right;margin:8px 0 0 8px}
+.centang{color:#53bdeb !important;font-weight:700}
+.centang-biru{color:#53bdeb !important;font-size:12px;line-height:1}
 .input-wrap{position:fixed;bottom:0;width:100%;background:#0b141a;padding:6px 8px 8px;z-index:20}
 .input-box{max-width:720px;margin:auto;display:flex;gap:6px;align-items:center}
 .input-in{flex:1;background:#2a3942;border-radius:25px;display:flex;align-items:center;padding:4px;gap:2px;position:relative}
-.emoji{font-size:22px;background:none;border:none;width:36px;height:36px;flex-shrink:0}
-.jarum{font-size:24px;background:none;border:none;width:38px;height:38px;flex-shrink:0;color:#aebac1}
+.emoji{font-size:22px;background:none;border:none;width:36px;height:36px}
+.jarum{font-size:24px;background:none;border:none;width:38px;height:38px;color:#aebac1}
 input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:16px;padding:8px 0;min-width:0}
 input::placeholder{color:#8696a0}
 .btn-bulat{width:46px;height:46px;border-radius:50%;border:none;font-size:20px;flex-shrink:0}
 .kirim{background:#00a884;color:#111b21}
 .mic{background:#00a884;color:#111b21}
-.mic.rekam{background:#ff3b30;color:#fff}
 .kecil{text-align:center;font-size:11px;color:#8696a0;margin-top:5px}
 #emojiPicker{display:none;position:absolute;bottom:48px;left:-4px;background:#233138;border-radius:14px;width:320px;max-width:90vw;z-index:30;overflow:hidden}
 .emoji-tabs{display:flex;background:#182229;padding:4px;gap:2px;overflow-x:auto}
@@ -61,11 +57,11 @@ input::placeholder{color:#8696a0}
 #panelFitur .row button{background:#2a3942;color:#fff;border:none;padding:8px 12px;border-radius:20px;font-size:13px}
 #panelFitur input{width:100%;background:#182229;color:#fff;border:none;outline:none;padding:10px;border-radius:10px;margin-bottom:8px}
 #kameraBox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:100;flex-direction:column}
-#kameraBox video{width:100%;flex:1;object-fit:cover;background:#000}
+#kameraBox video{width:100%;flex:1;object-fit:cover}
 #kameraBox canvas{display:none}
 .kamera-top{display:flex;justify-content:space-between;padding:12px;color:#fff}
 .kamera-top button{background:none;border:none;color:#fff;font-size:22px}
-.kamera-bawah{display:flex;justify-content:center;align-items:center;gap:20px;padding:20px}
+.kamera-bawah{display:flex;justify-content:center;gap:20px;padding:20px}
 .btn-jepret{width:70px;height:70px;border-radius:50%;background:#fff;border:5px solid #888}
 .btn-kamera-kecil{background:#2a2a3e;color:#fff;border:none;padding:10px 14px;border-radius:20px}
 #hasilFoto{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:101;flex-direction:column}
@@ -74,20 +70,36 @@ input::placeholder{color:#8696a0}
 .hasil-bawah button{flex:1;padding:12px;border:none;border-radius:25px;font-weight:700}
 .btn-ulang{background:#2a3942;color:#fff}
 .btn-kirim-foto{background:#00a884;color:#000}
+#ownerBox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);z-index:200;align-items:flex-end;justify-content:center}
+.owner-card{background:#1a262e;width:100%;max-width:380px;border-radius:24px 24px 0 0;padding:28px 22px 22px;text-align:center;animation:naik .25s ease}
+@keyframes naik{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.owner-card .garis{width:40px;height:4px;background:#2a3942;border-radius:10px;margin:-12px auto 16px}
+.owner-card img{width:88px;height:88px;border-radius:50%;object-fit:cover;border:2px solid #00a884;padding:2px}
+.owner-card .job{font-size:13px;color:#00a884;font-weight:700;margin-top:10px;letter-spacing:.5px}
+.owner-card p{font-size:13px;color:#aebac1;line-height:1.6;margin:12px 0 16px}
+.owner-card p b{color:#fff}
+.owner-card .mini{display:flex;gap:8px}
+.owner-card .mini div{flex:1;background:#202c33;padding:10px 0;border-radius:12px}
+.owner-card .mini b{display:block;font-size:14px}
+.owner-card .mini span{font-size:11px;color:#8696a0}
+.owner-card button{width:100%;margin-top:14px;background:#00a884;border:none;padding:13px;border-radius:25px;font-weight:700;font-size:15px;color:#000}
+.owner-card .tutup{background:transparent;color:#8696a0;margin-top:2px;font-weight:400}
+.owner-card .ig-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:10px;background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);color:#fff;text-decoration:none;padding:13px;border-radius:25px;font-weight:700;font-size:15px}
+.owner-card .ig-btn2{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:8px;background:#202c33;color:#fff;text-decoration:none;padding:12px;border-radius:25px;font-size:14px}
 </style></head><body>
 <div class="header">
 <button class="back" onclick="kembali()">←</button>
-<div class="logo"><img src="https://cdn.phototourl.com/anon/2026-11-25-0c14f49f-6749-4bc1-9102-8715cec43d89.jpg"></div>
-<div class="tengah"><b>KING BANGCATS ✓</b><span id="statusTxt">Online</span></div>
+<div class="logo" onclick="tampilOwner()"><img src="https://cdn.phototourl.com/anon/2026-11-25-0c14f49f-6749-4bc1-9102-8715cec43d89.jpg"></div>
+<div class="tengah" onclick="tampilOwner()"><b>KING BANGCATS <span class="centang-biru">✓</span></b><span id="statusTxt">Online</span></div>
 <button class="btn-hapus" onclick="hapus()">🗑️</button>
 </div>
 <div id="chat">
 <div class="tgl"><span>HARI INI</span></div>
-<div class="bubble ai">Woy Bos! Akhirnya nongol juga, Bos! 😹<br><br>Dari tadi gue nungguin, Bos.<br><br>Mau dibantu apa, Bos? Jangan minta pinjem duit aja, Bos.</div>
+<div class="bubble ai">Woy Bos! Akhirnya nongol juga, Bos! 😹<br><br>Mau dibantu apa, Bos?<br><br>Ketik <b>owner</b> buat liat pembuat gue + IG nya, Bos.</div>
 </div>
 <div class="input-wrap">
 <div id="panelFitur"><h4 id="judulPanel">Bikin Stiker</h4><input id="inputPanel" placeholder="Ketik apa aja..."><div class="row" id="rowPanel"></div><div style="display:flex;gap:8px;margin-top:10px"><button onclick="jalanPanel()" style="flex:1;background:#00a884;color:#000;border:none;padding:10px;border-radius:20px;font-weight:700">Buat</button><button onclick="tutupPanel()" style="background:#2a3942;color:#fff;border:none;padding:10px 14px;border-radius:20px">Tutup</button></div></div>
-<div id="menuJarum"><button onclick="pilihGaleri()">🖼️ Galeri</button><button onclick="pilihKamera()">📷 Kamera</button><button onclick="pilihFile()">📄 File</button></div>
+<div id="menuJarum"><button onclick="pilihGaleri()">🖼️ Galeri</button><button onclick="pilihKamera()">📷 Kamera</button><button onclick="pilihFile()">📄 File</button><button onclick="tampilOwner()">Owner</button></div>
 <div id="previewBox"><img id="previewImg" src=""><b id="previewTxt">Foto siap dikirim</b><button onclick="kirimFoto()">Kirim</button><button class="batal" onclick="batalFoto()">Batal</button></div>
 <div class="input-box">
 <div class="input-in">
@@ -104,6 +116,19 @@ input::placeholder{color:#8696a0}
 </div>
 <div class="kecil" id="kecilTxt">King Bangcats by Catur K.A</div>
 </div>
+<div id="ownerBox" onclick="tutupOwner()">
+<div class="owner-card" onclick="event.stopPropagation()">
+<div class="garis"></div>
+<img src="https://cdn.phototourl.com/anon/2026-11-25-0c14f49f-6749-4bc1-9102-8715cec43d89.jpg">
+<div class="job">OWNER • CREATOR</div>
+<p>Dibuat dari nol sama <b>👑 Catur K.A</b>.<br>King Bangcats, Bos.<br>Follow IG nya, Bos.</p>
+<div class="mini"><div><b>Owner</b><span>Owner</span></div><div><b>📸</b><span>IG</span></div><div><b>🔥</b><span>King</span></div></div>
+<a class="ig-btn" href="https://instagram.com/bangcats.id" target="_blank">📸 @bangcats.id</a>
+<a class="ig-btn2" href="https://instagram.com/__kerass" target="_blank">📸 @__kerass</a>
+<button onclick="tutupOwner();kirimOwnerChat()">Mulai Chat</button>
+<button class="tutup" onclick="tutupOwner()">Tutup</button>
+</div>
+</div>
 <div id="kameraBox">
 <div class="kamera-top"><button onclick="tutupKamera()">✕</button><button onclick="gantiKamera()">🔄</button></div>
 <video id="videoKamera" autoplay playsinline></video>
@@ -115,14 +140,18 @@ input::placeholder{color:#8696a0}
 <input type="file" id="inputFile" style="display:none">
 <script>
 let ingatan=[];let chat=document.getElementById("chat");let input=document.getElementById("tanya");let btn=document.getElementById("btnAksi");
-let fotoTerpilih=null;let fileTerpilih=null;let mediaRecorder=null;let audioChunks=[];let sedangRekam=false;
-let streamKamera=null;let kameraDepan=false;let fotoDariKamera=null;
-let modePanel="stiker"; let filterAktif="none";
-let fotoTerakhir=null;
+let fotoTerpilih=null;let fotoTerakhir=null;let filterAktif="none";let modePanel="stiker";
 function jam(){let d=new Date();return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}
 function scrollBawah(){window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"})}
 function kembali(){history.back()}
 function hapus(){chat.innerHTML='<div class="tgl"><span>HARI INI</span></div>';ingatan=[];fotoTerakhir=null}
+function tampilOwner(){document.getElementById("ownerBox").style.display="flex"}
+function tutupOwner(){document.getElementById("ownerBox").style.display="none"}
+function kirimOwnerChat(){
+  chat.innerHTML+='<div class="bubble lu">owner<span class="jam-lu">'+jam()+' <span class="centang">✓✓</span></span></div>';
+  chat.innerHTML+='<div class="bubble ai">Owner & Creator KING BANGCATS<br>Dibuat dari nol sama <b>👑 Catur K.A</b>.<br><br>📸 IG: <b>@bangcats.id</b><br>📸 IG 2: <b>@__kerass</b><br>Follow Bos, jangan cuma liatin! 🔥<span class="jam">'+jam()+'</span></div>';
+  scrollBawah();
+}
 function buatPromptAman(teks, mode){
   let t=teks.toLowerCase();
   let terjemah = t.replace(/anjing/g,"dog").replace(/kucing/g,"cat").replace(/naga/g,"dragon").replace(/ngakak/g,"laughing hard").replace(/marah/g,"angry").replace(/nangis/g,"crying").replace(/lucu/g,"cute").replace(/cantik/g,"beautiful girl").replace(/mobil/g,"sports car").replace(/rumah/g,"luxury house").replace(/cewek/g,"girl").replace(/cowok/g,"boy").replace(/terbang/g,"flying").replace(/makan/g,"eating").replace(/tidur/g,"sleeping").replace(/joget/g,"dancing");
@@ -131,23 +160,19 @@ function buatPromptAman(teks, mode){
   else {return "Beautiful high quality illustration of " + terjemah + ", detailed, cinematic lighting, vibrant colors, professional digital art";}
 }
 function bikinGambarPintar(teks, mode){
-  chat.innerHTML+='<div class="bubble lu">Bikinin '+mode+': '+teks+'<span class="jam-lu">'+jam()+' ✓✓</span></div>';
+  chat.innerHTML+='<div class="bubble lu">Bikinin '+mode+': '+teks+'<span class="jam-lu">'+jam()+' <span class="centang">✓✓</span></span></div>';
   let load=document.createElement("div");load.className="bubble ai";load.innerText="Bentar, lagi bikin...";chat.appendChild(load);scrollBawah();
   let promptFinal = buatPromptAman(teks, mode);
   let seed = Date.now();
   let url1="https://image.pollinations.ai/prompt/"+encodeURIComponent(promptFinal)+"?width=512&height=512&seed="+seed+"&model=turbo&nologo=true";
   let url2="https://image.pollinations.ai/prompt/"+encodeURIComponent(promptFinal)+"?width=512&height=512&seed="+(seed+1)+"&model=flux&nologo=true";
-  setTimeout(()=>{
-    load.remove();
-    chat.innerHTML+='<div class="bubble ai">Nih Bos.<br><img src="'+url1+'" onerror="this.onerror=null;this.src=\''+url2+'\'"><br>Gas lagi Bos?<span class="jam">'+jam()+'</span></div>';
-    scrollBawah();
-  },500);
+  setTimeout(()=>{load.remove();chat.innerHTML+='<div class="bubble ai">Nih Bos.<br><img src="'+url1+'" onerror="this.onerror=null;this.src=\''+url2+'\'"><br>Gas lagi Bos?<span class="jam">'+jam()+'</span></div>';scrollBawah();},500);
 }
 function editFoto(q){
   if(!fotoTerakhir) return false;
   let low=q.toLowerCase();
   if(!low.includes("edit") && !low.includes("ubah") && !low.includes("filter") && !low.includes("jadi")) return false;
-  let filter="none"; let label="Nih hasil editnya Bos.";
+  let filter="none";
   if(low.includes("hitam putih")||low.includes("bw")||low.includes("hitam")) filter="grayscale(1)";
   else if(low.includes("sepia")) filter="sepia(1)";
   else if(low.includes("neon")) filter="contrast(1.5) saturate(2) brightness(1.1)";
@@ -155,22 +180,20 @@ function editFoto(q){
   else if(low.includes("kartun")||low.includes("anime")) filter="contrast(1.4) saturate(2.2) brightness(1.05)";
   else if(low.includes("terbalik")) filter="hue-rotate(180deg)";
   else filter="contrast(1.2) saturate(1.5)";
-  chat.innerHTML+='<div class="bubble lu">'+q+'<span class="jam-lu">'+jam()+' ✓✓</span></div>';
-  chat.innerHTML+='<div class="bubble ai">'+label+'<br><img src="'+fotoTerakhir+'" style="filter:'+filter+'"><br>Gas lagi Bos?<span class="jam">'+jam()+'</span></div>';
-  scrollBawah();
-  return true;
+  chat.innerHTML+='<div class="bubble lu">'+q+'<span class="jam-lu">'+jam()+' <span class="centang">✓✓</span></span></div>';
+  chat.innerHTML+='<div class="bubble ai">Nih hasil editnya Bos.<br><img src="'+fotoTerakhir+'" style="filter:'+filter+'"><br>Gas lagi Bos?<span class="jam">'+jam()+'</span></div>';
+  scrollBawah();return true;
 }
 async function kirimPintar(q){
-  if(editFoto(q)) return true;
   let low=q.toLowerCase();
-  if(low.includes("bikinin stiker")||low.includes("buatin stiker")||low.includes("bikin stiker")||low.includes("buat stiker")||low.includes("stiker")){
-    let teks=q.replace(/bikinin stiker|buatin stiker|bikin stiker|buat stiker|stiker/gi,"").replace(/:/g,"").trim()||"kucing lucu";
-    bikinGambarPintar(teks,"stiker"); return true;
+  if(low.includes("owner")||low.includes("pembuat")||low.includes("yang buat")||low.includes("yang bikin")||low.includes("creator")||low.includes("catur")||low.includes("ig")||low.includes("instagram")){
+    chat.innerHTML+='<div class="bubble lu">'+q+'<span class="jam-lu">'+jam()+' <span class="centang">✓✓</span></span></div>';
+    chat.innerHTML+='<div class="bubble ai">Owner & Creator KING BANGCATS<br>Dibuat dari nol sama <b>👑 Catur K.A</b>.<br><br>📸 IG: <b>@bangcats.id</b><br>📸 IG 2: <b>@__kerass</b><br>Follow Bos, jangan cuma liatin! 🔥<span class="jam">'+jam()+'</span></div>';
+    scrollBawah();return true;
   }
-  if(low.includes("bikinin gambar")||low.includes("buatin gambar")||low.includes("bikin gambar")||low.includes("buat gambar")||low.includes("buatin foto")||low.includes("bikinin foto")||low.includes("gambar")){
-    let teks=q.replace(/bikinin gambar|buatin gambar|bikin gambar|buat gambar|buatin foto|bikinin foto|gambar/gi,"").replace(/:/g,"").trim()||"kucing lucu";
-    bikinGambarPintar(teks,"gambar"); return true;
-  }
+  if(editFoto(q)) return true;
+  if(low.includes("stiker")){let teks=q.replace(/bikinin stiker|buatin stiker|bikin stiker|buat stiker|stiker/gi,"").replace(/:/g,"").trim()||"kucing lucu";bikinGambarPintar(teks,"stiker");return true;}
+  if(low.includes("gambar")||low.includes("foto")){let teks=q.replace(/bikinin gambar|buatin gambar|bikin gambar|buat gambar|buatin foto|bikinin foto|gambar|foto/gi,"").replace(/:/g,"").trim()||"kucing lucu";bikinGambarPintar(teks,"gambar");return true;}
   return false;
 }
 function bukaPanel(mode){modePanel=mode;let p=document.getElementById("panelFitur");p.style.display="block";let judul=document.getElementById("judulPanel");let inp=document.getElementById("inputPanel");let row=document.getElementById("rowPanel");row.innerHTML="";
@@ -181,104 +204,34 @@ if(mode=="bg"){judul.innerText="Ganti Background";inp.style.display="none";row.i
 p.scrollIntoView({behavior:"smooth",block:"end"});}
 function isiPanel(t){document.getElementById("inputPanel").value=t;}
 function tutupPanel(){document.getElementById("panelFitur").style.display="none"}
-function pilihFilter(f,el){filterAktif=f;document.querySelectorAll("#rowPanel button").forEach(b=>b.style.background="#2a3942");el.style.background="#00a884";el.style.color="#000";alert("Filter kepilih. Kirim foto dari klip.");tutupPanel();}
+function pilihFilter(f,el){filterAktif=f;tutupPanel();alert("Filter kepilih. Kirim foto dari klip.");}
 function gantiBg(cls){document.body.className="";if(cls)document.body.classList.add(cls);localStorage.setItem("bg_king",cls);tutupPanel();}
 if(localStorage.getItem("bg_king")){document.body.classList.add(localStorage.getItem("bg_king"));}
-function jalanPanel(){
-let teks=document.getElementById("inputPanel").value.trim();
-if(modePanel=="stiker"||modePanel=="gambar"){
-if(!teks){alert("Ketik dulu.");return}
-tutupPanel();
-bikinGambarPintar(teks, modePanel);
-}
-}
-let EMOJI={
-senyum:"😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😝 😜 🤪 🤨 🧐 🤓 😎 🥸 🤩 🥳 😏 😒 😞 😔 😟 😕 🙁 ☹️ 😣 😖 😫 😩 🥺 😢 😭 😤 😡 😠 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤗 🤔 🤭 🤫 🤥 😶 😐 😑 😬 🙄 😯 😦 😧 😮 😲 🥱 😴 🤤 😪 😵 🤐 🥴 🤢 🤮 🤧 😷 🤒 🤕 🤑 🤠 😈 👿 👹 👺 🤡 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾".split(" "),
-hati:"❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💔 ❣️ 💕 💞 💓 💗 💖 💘 💝 💟 💌 💋 💯 ✨ ⭐ 🌟 🔥 🎉 🎊 💥 💫 💦 💧".split(" "),
-hewan:"🐶 🐱 🐭 🐹 🐰 🦊 🐻 🐼 🐨 🐯 🦁 🐮 🐷 🐸 🐵 🙈 🙉 🙊 🐔 🐧 🐦 🐤 🦄 🐝 🐛 🦋 🐌 🐞 🐜 🦂 🐢 🐍 🦖 🦕 🐙 🦑 🦐 🦞 🦀 🐡 🐠 🐟 🐬 🐳 🐋 🦈 🐊 🐅 🐆 🦓 🦍 🦧 🐘 🦛 🦏 🐪 🐫 🦒 🦘 🐃 🐂 🐄 🐎 🐖 🐏 🐑 🦙 🐐 🦌 🐕 🐩 🦮 🐈 🐓 🦃 🦚 🦜 🦢 🦩 🕊️ 🐇 🦝 🦨 🦡 🦦 🦥 🐁 🐀 🐿️ 🦔".split(" "),
-makan:"🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️ 🌽 🥕 🧄 🧅 🥔 🍠 🥐 🥖 🍞 🥨 🥯 🧀 🥚 🍳 🧈 🥞 🧇 🥓 🥩 🍗 🍖 🌭 🍔 🍟 🍕 🥪 🥙 🧆 🌮 🌯 🫔 🥗 🥘 🫕 🥫 🍝 🍜 🍲 🍛 🍣 🍱 🥟 🦪 🍤 🍙 🍚 🍘 🍥 🥠 🥮 🍢 🍡 🍧 🍨 🍦 🥧 🧁 🍰 🎂 🍮 🍭 🍬 🍫 🍿 🍩 🍪 🌰 🥜 🍯 🥛 🍼 ☕ 🍵 🧃 🥤 🍶 🍺 🥂 🍷 🥃 🍸 🍹 🧉 🍾 🧊 🥄".split(" "),
-bola:"⚽ 🏀 🏈 ⚾ 🥎 🎾 🏐 🏉 🥏 🎱 🪀 🏓 🏸 🏒 🏑 🥍 🏏 🪃 🥅 ⛳ 🪁 🏹 🎣 🤿 🥊 🥋 🎽 🛹 🛷 ⛸️ 🥌 🎿 ⛷️ 🏂 🪂 🏋️ 🤼 🤸 ⛹️ 🤺 🏇 🧘 🏄 🏊 🤽 🚣 🚵 🤾 🕹️ 🎮 🎲 🧩 ♟️ 🃏 🀄 🎴 🎯 🎳 🎰 🎪 🎭 🎨 🎬 🎤 🎧 🎼 🎹 🥁 🪘 🎷 🎺 🪗 🎸 🪕 🎻 🪉 🎲".split(" "),
-tangan:"👋 🤚 🖐️ ✋ 🖖 👌 🤌 🤏 ✌️ 🤞 🤟 🤘 🤙 👈 👉 👆 🖕 👇 ☝️ 👍 👎 ✊ 👊 🤛 🤜 👏 🙌 👐 🤲 🤝 🙏 ✍️ 💅 🤳 💪 🦾 🦿 🦵 🦶 👂 🦻 👀 👁️ 🧠 🫀 🫁 🦷 🦴 👃 👄 💋 🩸".split(" "),
-benda:"💡 🔦 🕯️ 🪔 🧯 🛢️ 💸 💵 💴 💶 💷 💰 💳 🧾 💎 ⚖️ 🪜 🧰 🪛 🔧 🔨 ⚒️ 🛠️ ⛏️ 🪚 🔩 ⚙️ 🪤 🧱 ⛓️ 🧲 🔫 💣 🪃 🧨 🪓 🔪 🗡️ ⚔️ 🛡️ 🚬 ⚰️ 🪦 ⚱️ 🏺 🔮 📿 🧿 🪬 💈 🛢️ 🪥 🧹 🪣 🧻 🪠 🧽 🧴 🛁 🚽 🚿 🪥 🧺".split(" ")
-};
+function jalanPanel(){let teks=document.getElementById("inputPanel").value.trim();if(modePanel=="stiker"||modePanel=="gambar"){if(!teks){alert("Ketik dulu.");return}tutupPanel();bikinGambarPintar(teks, modePanel);}}
+let EMOJI={senyum:"😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😝 😜 🤪 🤨 🧐 🤓 😎 🥸 🤩 🥳 😏 😒 😞 😔 😟 😕 🙁 ☹️ 😣 😖 😫 😩 🥺 😢 😭 😤 😡 😠 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤗 🤔 🤭 🤫 🤥 😶 😐 😑 😬 🙄 😯 😦 😧 😮 😲 🥱 😴 🤤 😪 😵 🤐 🥴 🤢 🤮 🤧 😷 🤒 🤕 🤑 🤠 😈 👿 👹 👺 🤡 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾".split(" "),hati:"❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💔 ❣️ 💕 💞 💓 💗 💖 💘 💝 💟 💌 💋 💯 ✨ ⭐ 🌟 🔥 🎉 🎊 💥 💫 💦 💧".split(" "),hewan:"🐶 🐱 🐭 🐹 🐰 🦊 🐻 🐼 🐨 🐯 🦁 🐮 🐷 🐸 🐵 🙈 🙉 🙊 🐔 🐧 🐦 🐤 🦄 🐝 🐛 🦋 🐌 🐞 🐜 🦂 🐢 🐍 🦖 🦕 🐙 🦑 🦐 🦞 🦀 🐡 🐠 🐟 🐬 🐳 🐋 🦈 🐊 🐅 🐆 🦓 🦍 🦧 🐘 🦛 🦏 🐪 🐫 🦒 🦘 🐃 🐂 🐄 🐎 🐖 🐏 🐑 🦙 🐐 🦌 🐕 🐩 🦮 🐈 🐓 🦃 🦚 🦜 🦢 🦩 🕊️ 🐇 🦝 🦨 🦡 🦦 🦥 🐁 🐀 🐿️ 🦔".split(" "),makan:"🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️ 🌽 🥕 🧄 🧅 🥔 🍠 🥐 🥖 🍞 🥨 🥯 🧀 🥚 🍳 🧈 🥞 🧇 🥓 🥩 🍗 🍖 🌭 🍔 🍟 🍕 🥪 🥙 🧆 🌮 🌯 🫔 🥗 🥘 🫕 🥫 🍝 🍜 🍲 🍛 🍣 🍱 🥟 🦪 🍤 🍙 🍚 🍘 🍥 🥠 🥮 🍢 🍡 🍧 🍨 🍦 🥧 🧁 🍰 🎂 🍮 🍭 🍬 🍫 🍿 🍩 🍪 🌰 🥜 🍯 🥛 🍼 ☕ 🍵 🧃 🥤 🍶 🍺 🥂 🍷 🥃 🍸 🍹 🧉 🍾 🧊 🥄".split(" "),bola:"⚽ 🏀 🏈 ⚾ 🥎 🎾 🏐 🏉 🥏 🎱 🪀 🏓 🏸 🏒 🏑 🥍 🏏 🪃 🥅 ⛳ 🪁 🏹 🎣 🤿 🥊 🥋 🎽 🛹 🛷 ⛸️ 🥌 🎿 ⛷️ 🏂 🪂 🏋️ 🤼 🤸 ⛹️ 🤺 🏇 🧘 🏄 🏊 🤽 🚣 🚵 🤾 🕹️ 🎮 🎲 🧩 ♟️ 🃏 🀄 🎴 🎯 🎳 🎰 🎪 🎭 🎨 🎬 🎤 🎧 🎼 🎹 🥁 🪘 🎷 🎺 🪗 🎸 🪕 🎻 🪉 🎲".split(" "),tangan:"👋 🤚 🖐️ ✋ 🖖 👌 🤌 🤏 ✌️ 🤞 🤟 🤘 🤙 👈 👉 👆 🖕 👇 ☝️ 👍 👎 ✊ 👊 🤛 🤜 👏 🙌 👐 🤲 🤝 🙏 ✍️ 💅 🤳 💪 🦾 🦿 🦵 🦶 👂 🦻 👀 👁️ 🧠 🫀 🫁 🦷 🦴 👃 👄 💋 🩸".split(" "),benda:"💡 🔦 🕯️ 🪔 🧯 🛢️ 💸 💵 💴 💶 💷 💰 💳 🧾 💎 ⚖️ 🪜 🧰 🪛 🔧 🔨 ⚒️ 🛠️ ⛏️ 🪚 🔩 ⚙️ 🪤 🧱 ⛓️ 🧲 🔫 💣 🪃 🧨 🪓 🔪 🗡️ ⚔️ 🛡️ 🚬 ⚰️ 🪦 ⚱️ 🏺 🔮 📿 🧿 🪬 💈 🛢️ 🪥 🧹 🪣 🧻 🪠 🧽 🧴 🛁 🚽 🚿 🪥 🧺".split(" ")};
 let tabAktif="senyum";
-function renderEmoji(list){
-let g=document.getElementById("emojiGrid");
-g.innerHTML="";
-list.forEach(e=>{
-let s=document.createElement("span");
-s.innerText=e;
-s.onclick=()=>pilihEmoji(e);
-g.appendChild(s)
-})
-}
-function gantiTab(tab,el){
-tabAktif=tab;
-document.querySelectorAll(".emoji-tabs button").forEach(b=>b.classList.remove("aktif"));
-el.classList.add("aktif");
-document.getElementById("cariEmoji").value="";
-renderEmoji(EMOJI[tab])
-}
-function cariEmoji(){
-let q=document.getElementById("cariEmoji").value.toLowerCase();
-if(!q){renderEmoji(EMOJI[tabAktif]);return}
-let semua=[];Object.values(EMOJI).forEach(a=>semua=semua.concat(a));
-renderEmoji(semua.slice(0,80));
-}
+function renderEmoji(list){let g=document.getElementById("emojiGrid");g.innerHTML="";list.forEach(e=>{let s=document.createElement("span");s.innerText=e;s.onclick=()=>pilihEmoji(e);g.appendChild(s)})}
+function gantiTab(tab,el){tabAktif=tab;document.querySelectorAll(".emoji-tabs button").forEach(b=>b.classList.remove("aktif"));el.classList.add("aktif");document.getElementById("cariEmoji").value="";renderEmoji(EMOJI[tab])}
+function cariEmoji(){let q=document.getElementById("cariEmoji").value.toLowerCase();if(!q){renderEmoji(EMOJI[tabAktif]);return}let semua=[];Object.values(EMOJI).forEach(a=>semua=semua.concat(a));renderEmoji(semua.slice(0,80));}
 function pilihEmoji(e){input.value+=e;input.focus();document.getElementById("emojiPicker").style.display="none";input.dispatchEvent(new Event("input"))}
 function pilihGaleri(){document.getElementById("inputFoto").click()}
 function pilihFile(){document.getElementById("inputFile").click()}
-function pilihKamera(){alert("Kamera belum aktif di versi ini, pakai Galeri dulu ya Bos.")}
+function pilihKamera(){alert("Kamera belum aktif, pakai Galeri dulu ya Bos.")}
 function pilihGaleriDariKamera(){document.getElementById("inputFoto").click()}
 function tutupKamera(){document.getElementById("kameraBox").style.display="none"}
 function gantiKamera(){}
 function jepret(){}
 function ulangFoto(){document.getElementById("hasilFoto").style.display="none"}
 function kirimDariKamera(){document.getElementById("hasilFoto").style.display="none"}
-function kirimFoto(){
-  if(!fotoTerpilih) return;
-  document.getElementById("previewBox").style.display="none";
-  document.getElementById("menuJarum").style.display="none";
-  fotoTerakhir=fotoTerpilih;
-  chat.innerHTML+='<div class="bubble lu"><img src="'+fotoTerpilih+'" style="filter:'+filterAktif+'"><span class="jam-lu">'+jam()+' ✓✓</span></div>';
-  chat.innerHTML+='<div class="bubble ai">Foto udah masuk Bos! 🔥<br>Mau diapain Bos? Ketik:<br>- edit foto jadi hitam putih<br>- edit foto jadi kartun<br>- edit foto jadi neon<br><span class="jam">'+jam()+'</span></div>';
-  fotoTerpilih=null; scrollBawah();
-}
+function kirimFoto(){if(!fotoTerpilih) return;document.getElementById("previewBox").style.display="none";document.getElementById("menuJarum").style.display="none";fotoTerakhir=fotoTerpilih;chat.innerHTML+='<div class="bubble lu"><img src="'+fotoTerpilih+'" style="filter:'+filterAktif+'"><span class="jam-lu">'+jam()+' <span class="centang">✓✓</span></span></div>';chat.innerHTML+='<div class="bubble ai">Foto udah masuk Bos! 🔥<br>Ketik: edit foto jadi hitam putih / kartun / neon<br><span class="jam">'+jam()+'</span></div>';fotoTerpilih=null;scrollBawah();}
 function batalFoto(){document.getElementById("previewBox").style.display="none";fotoTerpilih=null}
-let btnEmoji=document.getElementById("btnEmoji");
-let picker=document.getElementById("emojiPicker");
+let btnEmoji=document.getElementById("btnEmoji");let picker=document.getElementById("emojiPicker");
 btnEmoji.onclick=function(e){e.stopPropagation();if(picker.style.display==="block"){picker.style.display="none"}else{picker.style.display="block";renderEmoji(EMOJI["senyum"])}};
 document.addEventListener("click",function(e){if(!picker.contains(e.target) && e.target!==btnEmoji){picker.style.display="none"}});
 document.getElementById("btnJarum").onclick=function(e){e.stopPropagation();let m=document.getElementById("menuJarum");m.style.display=m.style.display==="flex"?"none":"flex"};
-document.getElementById("inputFoto").onchange=function(e){
-  let f=e.target.files[0]; if(!f) return;
-  let url=URL.createObjectURL(f);
-  document.getElementById("previewImg").src=url;
-  document.getElementById("previewTxt").innerText=f.name;
-  document.getElementById("previewBox").style.display="flex";
-  fotoTerpilih=url;
-  e.target.value="";
-};
-async function kirimChat(){
-  let q=input.value.trim(); if(!q) return;
-  if(await kirimPintar(q)){input.value="";input.dispatchEvent(new Event("input"));return;}
-  chat.innerHTML+='<div class="bubble lu">'+q+'<span class="jam-lu">'+jam()+' ✓✓</span></div>';
-  input.value=""; input.dispatchEvent(new Event("input")); scrollBawah();
-  ingatan.push({role:"user",content:q});
-  let load=document.createElement("div");load.className="bubble ai";load.innerText="Ketik...";chat.appendChild(load);scrollBawah();
-  try{
-    let r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:ingatan})});
-    let d=await r.json();
-    let jawab = d.choices && d.choices[0] ? d.choices[0].message.content : "Error Bos, coba lagi.";
-    load.remove();
-    ingatan.push({role:"assistant",content:jawab});
-    chat.innerHTML+='<div class="bubble ai">'+jawab.replace(/\n/g,"<br>")+'<span class="jam">'+jam()+'</span></div>';
-  }catch(e){ load.remove(); chat.innerHTML+='<div class="bubble ai">Error Bos, server belum jalan.<span class="jam">'+jam()+'</span></div>'; }
-  scrollBawah();
-}
-input.addEventListener("input",function(){
-  if(input.value.trim().length>0){btn.innerText="➤";btn.className="btn-bulat kirim";} else {btn.innerText="🎤";btn.className="btn-bulat mic";}
-});
+document.getElementById("inputFoto").onchange=function(e){let f=e.target.files[0];if(!f) return;let url=URL.createObjectURL(f);document.getElementById("previewImg").src=url;document.getElementById("previewTxt").innerText=f.name;document.getElementById("previewBox").style.display="flex";fotoTerpilih=url;e.target.value="";};
+async function kirimChat(){let q=input.value.trim();if(!q) return;if(await kirimPintar(q)){input.value="";input.dispatchEvent(new Event("input"));return;}chat.innerHTML+='<div class="bubble lu">'+q+'<span class="jam-lu">'+jam()+' <span class="centang">✓✓</span></span></div>';input.value="";input.dispatchEvent(new Event("input"));scrollBawah();ingatan.push({role:"user",content:q});let load=document.createElement("div");load.className="bubble ai";load.innerText="Ketik...";chat.appendChild(load);scrollBawah();try{let r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:ingatan})});let d=await r.json();let jawab=d.choices&&d.choices[0]?d.choices[0].message.content:"Error Bos, coba lagi.";load.remove();ingatan.push({role:"assistant",content:jawab});chat.innerHTML+='<div class="bubble ai">'+jawab.replace(/\n/g,"<br>")+'<span class="jam">'+jam()+'</span></div>';}catch(e){load.remove();chat.innerHTML+='<div class="bubble ai">Error Bos, server belum jalan.<span class="jam">'+jam()+'</span></div>';}scrollBawah();}
+input.addEventListener("input",function(){if(input.value.trim().length>0){btn.innerText="➤";btn.className="btn-bulat kirim";}else{btn.innerText="🎤";btn.className="btn-bulat mic";}});
 input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();kirimChat();}});
 btn.onclick=function(){if(input.value.trim().length>0){kirimChat();}};
 </script>
