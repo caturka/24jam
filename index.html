@@ -117,7 +117,7 @@ input::placeholder{color:#8696a0}
 <div class="garis"></div>
 <img src="https://cdn.phototourl.com/anon/2026-11-25-0c14f49f-6749-4bc1-9102-8715cec43d89.jpg">
 <div class="job">OWNER • CREATOR</div>
-<p>Dibuat dari nol sama <b>👑 Catur K.A</b>.<br>King Bangcats, Bos.<br>Follow IG nya, Bos.</p>
+<p>Dibuat dari nol sama <b>👑 Catur K.A</b>.<br>Bos aja.<br>Follow IG nya, Bos.</p>
 <div class="mini"><div><b>Owner</b><span>Owner</span></div><div><b>📸</b><span>IG</span></div><div><b>🔥</b><span>King</span></div></div>
 <a class="ig-btn" href="https://instagram.com/bangcats.id" target="_blank">📸 @bangcats.id</a>
 <a class="ig-btn2" href="https://instagram.com/__kerass" target="_blank">📸 @__kerass</a>
@@ -143,7 +143,6 @@ input::placeholder{color:#8696a0}
 var audio=document.getElementById('audioPlayer');
 var RENDER_URL = 'https://zeronrender.onrender.com';
 var riwayatChat = [];
-
 function nyalainLaguPertama(){
   document.getElementById('overlayLagu').style.display='none';
   audio.play().then(function(){document.getElementById('btnPlayBar').innerText='⏸';}).catch(function(){});
@@ -164,12 +163,10 @@ function hapus(){if(confirm('Hapus chat, Bos?')){document.getElementById('chat')
 function tambahEmoji(e){document.getElementById('tanya').value+=e;}
 function pilihGaleri(){alert('Pilih galeri, Bos.');}
 function pilihKamera(){alert('Buka kamera, Bos.');}
-
 function jamSekarang(){
   var n=new Date();
   return n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');
 }
-
 function jawabPintar(t, txtAsli){
   t = t.toLowerCase();
   if(t.includes('owner') || t.includes('pembuat') || t.includes('catur')){
@@ -183,7 +180,6 @@ function jawabPintar(t, txtAsli){
   }
   return null;
 }
-
 async function tanyaRender(pesanUser){
   riwayatChat.push({role:"user", content:pesanUser});
   if(riwayatChat.length > 10) riwayatChat = riwayatChat.slice(-10);
@@ -198,7 +194,6 @@ async function tanyaRender(pesanUser){
     return "Waduh, Bos. Render gak nyambung, Bos. " + e.message;
   }
 }
-
 async function kirimChat(){
   var inp=document.getElementById('tanya');var txt=inp.value.trim();if(!txt)return;
   var chat=document.getElementById('chat');
