@@ -22,7 +22,8 @@ body{font-family:system-ui;background:#0b141a;color:#e9edef;padding-bottom:170px
 .ai{background:#202c33;align-self:flex-start;border-top-left-radius:0}
 .lu{background:#005c4b;align-self:flex-end;border-top-right-radius:0}
 .jam{font-size:11px;color:#8696a0;float:right;margin:8px 0 0 8px}
-.centang-biru{color:#53bdeb !important;font-size:12px}
+.lu .jam{color:#a8d5c5}
+.centang-biru{color:#53bdeb !important;font-size:13px;font-weight:bold}
 .input-wrap{position:fixed;bottom:0;width:100%;background:#0b141a;padding:6px 8px 8px;z-index:20}
 .input-box{max-width:720px;margin:auto;display:flex;gap:6px;align-items:center}
 .input-in{flex:1;background:#2a3942;border-radius:25px;display:flex;align-items:center;padding:4px;gap:2px}
@@ -89,7 +90,7 @@ input::placeholder{color:#8696a0}
 
 <div id="chat">
 <div class="tgl"><span>HARI INI</span></div>
-<div class="bubble ai">Woy Bos! Akhirnya nongol juga, Bos! 😹<br><br>Mau dibantu apa, Bos?<br><br>Ketik <b>owner</b> buat liat pembuat gue + IG nya, Bos.<br>Ketik <b>lagu</b> buat muter lagu, Bos. 🎵</div>
+<div class="bubble ai">Woy Bos! Akhirnya nongol juga, Bos! 😹<br><br>Mau dibantu apa, Bos?<br><br>Ketik <b>owner</b> buat liat pembuat gue + IG nya, Bos.<br>Ketik <b>lagu</b> buat muter lagu, Bos. 🎵<span class="jam">09:30</span></div>
 </div>
 
 <div id="barLagu" onclick="bukaMusik()">
@@ -141,6 +142,12 @@ input::placeholder{color:#8696a0}
 
 <script>
 var audio=document.getElementById('audioPlayer');
+function jamSekarang(){
+  var d=new Date();
+  var h=d.getHours(); if(h<10)h='0'+h;
+  var m=d.getMinutes(); if(m<10)m='0'+m;
+  return h+':'+m;
+}
 function nyalainLaguPertama(){
   document.getElementById('overlayLagu').style.display='none';
   audio.play().then(function(){document.getElementById('btnPlayBar').innerText='⏸';}).catch(function(){});
@@ -190,14 +197,11 @@ function jawabPintar(t, txtAsli){
   if(t.includes('makasih') || t.includes('thank') || t.includes('thanks')){
     return 'Sama-sama, Bos! 😹<br>Seneng bisa bantu lu, Bos.<br>Ada lagi, Bos?';
   }
-  if(t.includes('jelek') || t.includes('bego') || t.includes('bodoh')){
-    return 'Yah, Bos. Jangan gitu, Bos. 😿<br>Gue kan masih belajar, Bos.<br>Maafin gue ya, Bos.';
-  }
   if(t.includes('cinta') || t.includes('sayang') || t.includes('suka')){
     return 'Aaww, Bos. 😹❤️<br>Gue juga sayang lu, Bos.<br>Lu jangan pergi-pergi, Bos.';
   }
   if(t.includes('tidur') || t.includes('ngantuk')){
-    return 'Udah jam segini masih melek, Bos? 😹<br>Tidur gih, Bos. Besok gue temenin lagi, Bos.<br>Tapi dengerin lagu gue dulu, Bos. 🎵';
+    return 'Udah jam segini masih melek, Bos? 😹<br>Tidur gih, Bos. Besok gue temenin lagi, Bos.';
   }
   if(t.includes('makan') || t.includes('lapar')){
     return 'Udah makan belum, Bos? 😹<br>Jangan telat makan, Bos.<br>Makan dulu gih, Bos. Gue tungguin, Bos.';
@@ -213,13 +217,15 @@ function jawabPintar(t, txtAsli){
 function kirimChat(){
   var inp=document.getElementById('tanya');var txt=inp.value.trim();if(!txt)return;
   var chat=document.getElementById('chat');
-  var d=document.createElement('div');d.className='bubble lu';d.innerHTML=txt+'<span class="jam">Baru</span>';chat.appendChild(d);
+  var d=document.createElement('div');d.className='bubble lu';
+  d.innerHTML=txt+'<span class="jam">'+jamSekarang()+' <span class="centang-biru">✓✓</span></span>';
+  chat.appendChild(d);
   inp.value='';
   document.getElementById('statusTxt').innerText='Mengetik...';
   setTimeout(function(){
     document.getElementById('statusTxt').innerText='Online';
     var r=document.createElement('div');r.className='bubble ai';
-    r.innerHTML=jawabPintar(txt, txt);
+    r.innerHTML=jawabPintar(txt, txt)+'<span class="jam">'+jamSekarang()+'</span>';
     chat.appendChild(r);window.scrollTo(0,document.body.scrollHeight);
   },700);
   window.scrollTo(0,document.body.scrollHeight);
