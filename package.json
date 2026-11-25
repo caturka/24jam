@@ -1,11 +1,15 @@
 {
-  "name": "24jam",
+  "name": "king-bangcats",
   "version": "1.0.0",
+  "description": "KING BANGCATS by Catur K.A",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
