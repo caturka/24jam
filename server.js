@@ -27,6 +27,10 @@ app.post('/api/chat', async (req, res) => {
       })
     });
     const data = await r.json();
+    console.log('GROQ:', JSON.stringify(data).slice(0,1000));
+    if (!data.choices) {
+      return res.json({ choices: [{ message: { content: 'Waduh Bos, Groq error Bos: ' + JSON.stringify(data.error) } }] });
+    }
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: e.message });
