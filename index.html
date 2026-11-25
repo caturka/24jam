@@ -175,7 +175,7 @@ input::placeholder{color:#8696a0}
 <script>
 setInterval(function(){var k=document.getElementById('kategoriRow');if(k) k.remove();document.querySelectorAll('.efek-kategori,.efek-search').forEach(function(e){e.remove()});},500);
 var audio=document.getElementById('audioPlayer');
-var RENDER_URL = 'https://zeronrender.onrender.com';
+var RENDER_URL = '';
 var riwayatChat = [];
 var fotoURL = '';
 var fotoFilter = 'none';
@@ -317,13 +317,16 @@ async function tanyaRender(pesanUser){
   riwayatChat.push({role:"user", content:pesanUser});
   if(riwayatChat.length>10) riwayatChat=riwayatChat.slice(-10);
   try{
-    var res=await fetch(RENDER_URL+"/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:riwayatChat})});
+    var res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:riwayatChat})});
+    if(!res.ok) throw new Error("Server "+res.status);
     var data=await res.json();
     var jawaban=data.reply||(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content)||"";
-    if(!jawaban) return "Waduh, Bos. Render bales kosong, Bos.";
+    if(!jawaban) throw new Error("Kosong");
     riwayatChat.push({role:"assistant",content:jawaban});
     return jawaban.replace(/\n/g,"<br>");
-  }catch(e){return "Waduh, Bos. Render gak nyambung, Bos. "+e.message;}
+  }catch(e){
+    return "Siap, Bos! 😹<br>Gue denger, Bos. Lu bilang: <b>"+pesanUser+"</b><br><br>Gue lagi mode offline, Bos. Server AI nya lagi tidur, Bos.<br><br>Coba ketik <b>owner</b> / <b>lagu</b>, Bos. Itu pasti jalan, Bos. 🔥";
+  }
 }
 async function kirimChat(){
   var inp=document.getElementById('tanya');var txt=inp.value.trim();if(!txt)return;
