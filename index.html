@@ -22,8 +22,7 @@ body{font-family:system-ui;background:#0b141a;color:#e9edef;padding-bottom:170px
 .ai{background:#202c33;align-self:flex-start;border-top-left-radius:0}
 .lu{background:#005c4b;align-self:flex-end;border-top-right-radius:0}
 .jam{font-size:11px;color:#8696a0;float:right;margin:8px 0 0 8px}
-.lu .jam{color:#a8d5c5}
-.centang-biru{color:#53bdeb !important;font-size:13px;font-weight:bold}
+.centang-biru{color:#53bdeb !important;font-size:12px}
 .input-wrap{position:fixed;bottom:0;width:100%;background:#0b141a;padding:6px 8px 8px;z-index:20}
 .input-box{max-width:720px;margin:auto;display:flex;gap:6px;align-items:center}
 .input-in{flex:1;background:#2a3942;border-radius:25px;display:flex;align-items:center;padding:4px;gap:2px}
@@ -90,7 +89,7 @@ input::placeholder{color:#8696a0}
 
 <div id="chat">
 <div class="tgl"><span>HARI INI</span></div>
-<div class="bubble ai">Woy Bos! Akhirnya nongol juga, Bos! 😹<br><br>Mau dibantu apa, Bos?<br><br>Ketik <b>owner</b> buat liat pembuat gue + IG nya, Bos.<br>Ketik <b>lagu</b> buat muter lagu, Bos. 🎵<span class="jam">09:30</span></div>
+<div class="bubble ai">Woy Bos! Akhirnya nongol juga, Bos! 😹<br><br>Mau dibantu apa, Bos?<br><br>Ketik <b>owner</b> buat liat pembuat gue + IG nya, Bos.<br>Ketik <b>lagu</b> buat muter lagu, Bos. 🎵</div>
 </div>
 
 <div id="barLagu" onclick="bukaMusik()">
@@ -118,7 +117,7 @@ input::placeholder{color:#8696a0}
 <div class="garis"></div>
 <img src="https://cdn.phototourl.com/anon/2026-11-25-0c14f49f-6749-4bc1-9102-8715cec43d89.jpg">
 <div class="job">OWNER • CREATOR</div>
-<p>Dibuat dari nol sama <b>👑 Catur K.A</b>.<br>Follow IG nya, Bos.</p>
+<p>Dibuat dari nol sama <b>👑 Catur K.A</b>.<br>King Bangcats, Bos.<br>Follow IG nya, Bos.</p>
 <div class="mini"><div><b>Owner</b><span>Owner</span></div><div><b>📸</b><span>IG</span></div><div><b>🔥</b><span>King</span></div></div>
 <a class="ig-btn" href="https://instagram.com/bangcats.id" target="_blank">📸 @bangcats.id</a>
 <a class="ig-btn2" href="https://instagram.com/__kerass" target="_blank">📸 @__kerass</a>
@@ -142,12 +141,9 @@ input::placeholder{color:#8696a0}
 
 <script>
 var audio=document.getElementById('audioPlayer');
-function jamSekarang(){
-  var d=new Date();
-  var h=d.getHours(); if(h<10)h='0'+h;
-  var m=d.getMinutes(); if(m<10)m='0'+m;
-  return h+':'+m;
-}
+var RENDER_URL = 'https://zeronrender.onrender.com';
+var riwayatChat = [];
+
 function nyalainLaguPertama(){
   document.getElementById('overlayLagu').style.display='none';
   audio.play().then(function(){document.getElementById('btnPlayBar').innerText='⏸';}).catch(function(){});
@@ -164,89 +160,62 @@ function tampilOwner(){document.getElementById('ownerBox').style.display='flex';
 function tutupOwner(){document.getElementById('ownerBox').style.display='none';}
 function toggleMenu(){var m=document.getElementById('menuJarum');m.style.display=(m.style.display==='flex')?'none':'flex';}
 function kembali(){}
-function hapus(){if(confirm('Hapus chat, Bos?')){document.getElementById('chat').innerHTML='<div class="tgl"><span>HARI INI</span></div>';}}
+function hapus(){if(confirm('Hapus chat, Bos?')){document.getElementById('chat').innerHTML='<div class="tgl"><span>HARI INI</span></div>';riwayatChat=[];}}
 function tambahEmoji(e){document.getElementById('tanya').value+=e;}
 function pilihGaleri(){alert('Pilih galeri, Bos.');}
 function pilihKamera(){alert('Buka kamera, Bos.');}
 
-function jawabPintar(txtAsli){
-  var t = txtAsli.toLowerCase().replace(/[?!.]+/g,' ').trim();
-  // Normalisasi bahasa gaul - KM = KAMU
-  t = ' ' + t + ' ';
-  t = t.replace(/ km /g,' kamu ').replace(/ ko /g,' kamu ').replace(/ kau /g,' kamu ').replace(/ lu /g,' kamu ').replace(/ lo /g,' kamu ').replace(/ u /g,' kamu ');
-  t = t.trim();
+function jamSekarang(){
+  var n=new Date();
+  return n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');
+}
 
-  // 1. OWNER - paling atas
-  if(t.includes('owner') || t.includes('pembuat') || t.includes('catur') || t.includes('bangcats')){
+function jawabPintar(t, txtAsli){
+  t = t.toLowerCase();
+  if(t.includes('owner') || t.includes('pembuat') || t.includes('catur')){
     setTimeout(tampilOwner, 400);
     return 'Ini owner gue, Bos. 👑<br><b>Catur K.A</b>, Bos.<br>IG nya <b>@bangcats.id</b> sama <b>@__kerass</b>, Bos.<br>Follow, Bos!';
   }
-  // 2. LAGU
-  if(t.includes('lagu') || t.includes('musik') || t.includes('nyanyi') || t.includes('putar')){
-    audio.play();
+  if(t.includes('lagu') || t.includes('musik') || t.includes('nyanyi')){
+    audio.play().catch(function(){});
     setTimeout(bukaMusik, 400);
     return 'Siap, Bos! 🎵<br>Lagu <b>King Bangkets E Ai - Selalu di Sini</b> lagi muter, Bos.<br>Enak, kan, Bos? 🔥';
   }
-  // 3. SIAPA - HARUS SEBELUM SIAP! Karena SIAPA ada kata SIAP di dalamnya
-  if(t.includes('siapa') || t.includes('sopo')){
-    return 'Gue <b>KING BANGCATS</b>, Bos! 👑😹<br>Raja nya E Ai, Bos.<br>Dibuat sama <b>Catur K.A</b>, Bos.<br>Lu siapa, Bos? Kenalan, Bos.';
-  }
-  // 4. HAH / HA / APA
-  if(t === 'hah' || t === 'ha' || t === 'huh' || t === 'apa' || t === 'apaan' || t === 'ha?'){
-    return 'Hah kenapa, Bos? 😹<br>Gue salah ngomong ya, Bos?<br>Coba ketik lagi, Bos. Yang jelas, Bos.';
-  }
-  // 5. SAPA
-  if(t === 'hay' || t === 'hai' || t === 'halo' || t === 'hei' || t === 'hey' || t === 'hi' || t === 'hallo' || t.startsWith('hay ') || t.startsWith('halo ')){
-    return 'Hay juga, Bos! 😹<br>Akhirnya nongol juga, Bos.<br>Gimana kabar lu, Bos?';
-  }
-  if(t.includes('lagi apa') || t.includes('ngapain') || t.includes('lg apa') || t.includes('sedang apa')){
-    return 'Lagi temenin lu, Bos! 😹<br>Lagi nungguin lu chat, Bos.<br>Lu lagi apa, Bos? Cerita, Bos.';
-  }
-  if(t.includes('kabar') || t.includes('apa kabar')){
-    return 'Kabar gue baik banget, Bos! 🔥<br>Soalnya ada lu, Bos.<br>Lu gimana, Bos? Sehat, Bos?';
-  }
-  if(t.includes('bosen') || t.includes('bosan') || t.includes('gabut')){
-    return 'Kalo bosen, dengerin lagu gue aja, Bos! 🎵<br>Ketik <b>lagu</b>, Bos.<br>Dijamin langsung semangat, Bos!';
-  }
-  if(t.includes('makasih') || t.includes('thank') || t.includes('thanks') || t.includes('mksh')){
-    return 'Sama-sama, Bos! 😹<br>Seneng bisa bantu lu, Bos.<br>Ada lagi, Bos?';
-  }
-  if(t.includes('cinta') || t.includes('sayang') || t.includes('suka kamu') || t.includes('suka lu')){
-    return 'Aaww, Bos. 😹❤️<br>Gue juga sayang lu, Bos.<br>Lu jangan pergi-pergi, Bos.';
-  }
-  if(t.includes('tidur') || t.includes('ngantuk')){
-    return 'Udah jam segini masih melek, Bos? 😹<br>Tidur gih, Bos. Besok gue temenin lagi, Bos.';
-  }
-  if(t.includes('makan') || t.includes('lapar')){
-    return 'Udah makan belum, Bos? 😹<br>Jangan telat makan, Bos.<br>Makan dulu gih, Bos. Gue tungguin, Bos.';
-  }
-  // 6. SIAP / OKE - HARUS KATA SENDIRI, bukan bagian dari SIAPA
-  if(t === 'siap' || t === 'oke' || t === 'ok' || t === 'oke bos' || t === 'siap bos' || t.includes(' siap ') || t.includes(' oke ')){
-    return 'Mantap, Bos! 🔥<br>Gas, Bos! Gue siap, Bos.';
-  }
-  if(t.includes('bye') || t.includes('dadah') || t.includes('udahan') || t.includes('cabut')){
-    return 'Yah, mau pergi, Bos? 😿<br>Jangan lama-lama, Bos.<br>Balik lagi ya, Bos!';
-  }
-  if(t.includes('jelek') || t.includes('bego') || t.includes('bodoh') || t.includes('goblok')){
-    return 'Yah, Bos. Jangan gitu, Bos. 😿<br>Gue kan masih belajar, Bos.<br>Maafin gue ya, Bos.';
-  }
-  return 'Oh gitu, Bos. 😹<br><b>"'+txtAsli+'"</b><br><br>Menarik, Bos. Cerita lagi, Bos.<br>Atau ketik <b>lagu</b> buat dengerin lagu gue, Bos. 🎵';
+  return null;
 }
 
-function kirimChat(){
+async function tanyaRender(pesanUser){
+  riwayatChat.push({role:"user", content:pesanUser});
+  if(riwayatChat.length > 10) riwayatChat = riwayatChat.slice(-10);
+  try{
+    var res = await fetch(RENDER_URL + "/api/chat", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({messages:riwayatChat})});
+    var data = await res.json();
+    var jawaban = data.reply || (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || "";
+    if(!jawaban) return "Waduh, Bos. Render bales kosong, Bos.";
+    riwayatChat.push({role:"assistant", content:jawaban});
+    return jawaban.replace(/\n/g,"<br>");
+  }catch(e){
+    return "Waduh, Bos. Render gak nyambung, Bos. " + e.message;
+  }
+}
+
+async function kirimChat(){
   var inp=document.getElementById('tanya');var txt=inp.value.trim();if(!txt)return;
   var chat=document.getElementById('chat');
-  var d=document.createElement('div');d.className='bubble lu';
-  d.innerHTML=txt+'<span class="jam">'+jamSekarang()+' <span class="centang-biru">✓✓</span></span>';
-  chat.appendChild(d);
+  var jam = jamSekarang();
+  var d=document.createElement('div');d.className='bubble lu';d.innerHTML=txt+'<span class="jam">'+jam+' <span class="centang-biru">✓✓</span></span>';chat.appendChild(d);
   inp.value='';
   document.getElementById('statusTxt').innerText='Mengetik...';
-  setTimeout(function(){
+  var lokal = jawabPintar(txt, txt);
+  if(lokal){
     document.getElementById('statusTxt').innerText='Online';
-    var r=document.createElement('div');r.className='bubble ai';
-    r.innerHTML=jawabPintar(txt)+'<span class="jam">'+jamSekarang()+'</span>';
-    chat.appendChild(r);window.scrollTo(0,document.body.scrollHeight);
-  },700);
+    var r=document.createElement('div');r.className='bubble ai';r.innerHTML=lokal+'<span class="jam">'+jam+'</span>';chat.appendChild(r);
+    window.scrollTo(0,document.body.scrollHeight);
+    return;
+  }
+  var jawaban = await tanyaRender(txt);
+  document.getElementById('statusTxt').innerText='Online';
+  var r2=document.createElement('div');r2.className='bubble ai';r2.innerHTML=jawaban+'<span class="jam">'+jam+'</span>';chat.appendChild(r2);
   window.scrollTo(0,document.body.scrollHeight);
 }
 document.getElementById('tanya').addEventListener('keydown',function(e){if(e.key==='Enter')kirimChat();});
