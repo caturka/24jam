@@ -21,7 +21,6 @@ body{font-family:system-ui;background:#0b141a;color:#e9edef;padding-bottom:170px
 .bubble{padding:7px 8px 6px 9px;border-radius:8px;max-width:85%;font-size:15px;line-height:1.35;white-space:pre-wrap;box-shadow:0 1px 1px rgba(0,0,0,.3);word-wrap:break-word}
 .ai{background:#202c33;align-self:flex-start;border-top-left-radius:0}
 .lu{background:#005c4b;align-self:flex-end;border-top-right-radius:0}
-.bubble img{width:100%;max-width:260px;border-radius:8px;display:block}
 .jam{font-size:11px;color:#8696a0;float:right;margin:8px 0 0 8px}
 .centang-biru{color:#53bdeb !important;font-size:12px}
 .input-wrap{position:fixed;bottom:0;width:100%;background:#0b141a;padding:6px 8px 8px;z-index:20}
@@ -68,164 +67,22 @@ input::placeholder{color:#8696a0}
 .overlay-card p{font-size:13px;color:#aebac1;line-height:1.5;margin-bottom:16px}
 .overlay-card button{width:100%;background:#00a884;color:#000;border:none;padding:15px;border-radius:25px;font-weight:800;font-size:16px;margin-bottom:8px}
 .overlay-card .pilih{background:#2a3942;color:#fff}
-#previewFoto{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:600;flex-direction:column}
-.efek-top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px 10px;color:#fff}
-.efek-top button{background:none;border:none;color:#fff;font-size:17px;font-weight:600;padding:8px}
-.efek-top b{font-size:19px}
-.efek-foto{flex:1;display:flex;align-items:center;justify-content:center;padding:10px 20px;min-height:0}
-.efek-foto img{max-width:100%;max-height:100%;border-radius:18px;object-fit:contain;background:#111}
-.efek-kategori{display:flex;gap:22px;overflow-x:auto;padding:12px 14px 8px;white-space:nowrap;scrollbar-width:none}
-.efek-kategori button{background:none;border:none;color:#8a8a8a;font-size:16px;padding:6px 0;flex-shrink:0}
-.efek-kategori button.aktif{color:#fff;font-weight:700;border-bottom:3px solid #fff}
-.efek-list{display:flex;gap:12px;overflow-x:auto;padding:8px 14px 10px;scrollbar-width:none}
-.efek-card{flex-shrink:0;width:92px;text-align:center;cursor:pointer}
-.efek-card .thumb{width:92px;height:130px;border-radius:14px;overflow:hidden;position:relative;background:#222;border:2px solid transparent}
-.efek-card.aktif .thumb{border-color:#fff}
-.efek-card .thumb img{width:100%;height:100%;object-fit:cover}
-.efek-card .bintang{position:absolute;top:6px;left:6px;font-size:14px}
-.efek-card b{display:block;font-size:14px;color:#fff;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.efek-card span{font-size:13px;color:#8a8a8a}
-.efek-search{display:flex;gap:10px;padding:8px 14px 18px;align-items:center}
-.efek-search .cari{flex:1;background:#1c1c1c;border-radius:25px;padding:12px 16px;color:#8a8a8a;display:flex;gap:8px;align-items:center;font-size:15px}
-.efek-search .cari input{background:transparent;border:none;outline:none;color:#fff;font-size:15px;width:100%}
-.efek-search .btn-edit{width:48px;height:48px;border-radius:50%;background:#1c1c1c;border:none;font-size:20px;color:#fff;flex-shrink:0}
-.efek-aksi{display:flex;gap:8px;padding:0 14px 14px}
-.efek-aksi button{flex:1;border:none;padding:13px;border-radius:25px;font-weight:700;font-size:15px}
 </style></head><body>
-
-<div id="overlayLagu">
-<div class="overlay-card">
-<div class="big">🎵</div>
-<h2>KING BANGCATS</h2>
-<p>Pencet buat masuk, Bos.<br>Lagunya langsung putar otomatis, Bos. 🔥</p>
-<button onclick="nyalainLaguPertama()">▶ MASUK + PUTAR LAGU</button>
-<button class="pilih" onclick="document.getElementById('pilihLagu').click()">📂 Pilih Lagu Dari HP</button>
-</div>
-</div>
-
-<div class="header">
-<button class="back" onclick="kembali()">←</button>
-<div class="logo" onclick="tampilOwner()"><img src="https://cdn.phototourl.com/anon/2026-11-25-0c14f49f-6749-4bc1-9102-8715cec43d89.jpg"></div>
-<div class="tengah" onclick="tampilOwner()"><b>KING BANGCATS <span class="centang-biru">✓</span></b><span id="statusTxt">Online</span></div>
-<button class="btn-musik" onclick="bukaMusik()">🎵</button>
-<button class="btn-hapus" onclick="hapus()">🗑️</button>
-</div>
-
-<div id="chat">
-<div class="tgl"><span>HARI INI</span></div>
-<div class="bubble ai">Woy Bos! Akhirnya nongol juga, Bos! 😹<br><br>Mau dibantu apa, Bos?<br><br>Ketik <b>owner</b> buat liat pembuat gue + IG nya, Bos.<br>Ketik <b>lagu</b> buat muter lagu, Bos. 🎵</div>
-</div>
-
-<div id="barLagu" onclick="bukaMusik()">
-<div class="cover">🎵</div>
-<div style="flex:1;min-width:0"><b id="barJudul">King Bangkets E Ai - Selalu di Sini</b><span id="barPenyanyi">Catur K.A • KING BANGCATS</span></div>
-<button id="btnPlayBar" onclick="event.stopPropagation();togglePlayBar()">⏸</button>
-<button class="btn-next" onclick="event.stopPropagation();nextLagu()" style="background:#2a3942;color:#fff">⏭</button>
-</div>
-
-<div class="input-wrap">
-<div id="menuJarum"><button onclick="pilihGaleri()">🖼️ Galeri</button><button onclick="pilihKamera()">📷 Kamera</button><button onclick="tampilOwner()">Owner</button><button onclick="bukaMusik()">🎵 Lagu</button></div>
-<div class="input-box">
-<div class="input-in">
-<button class="emoji" type="button" onclick="tambahEmoji('😹')">☺</button>
-<input id="tanya" placeholder="Ketik pesan..." autocomplete="off">
-<button class="jarum" type="button" onclick="toggleMenu()">📎</button>
-</div>
-<button class="btn-bulat mic" id="btnAksi" type="button" onclick="kirimChat()">➤</button>
-</div>
-<div class="kecil">King Bangcats by Catur K.A</div>
-</div>
-
-<div id="ownerBox" onclick="tutupOwner()">
-<div class="owner-card" onclick="event.stopPropagation()">
-<div class="garis"></div>
-<img src="https://cdn.phototourl.com/anon/2026-11-25-0c14f49f-6749-4bc1-9102-8715cec43d89.jpg">
-<div class="job">OWNER • CREATOR</div>
-<p>Dibuat dari nol sama <b>👑 Catur K.A</b>.<br>Follow IG nya, Bos.</p>
-<div class="mini"><div><b>Owner</b><span>Owner</span></div><div><b>📸</b><span>IG</span></div><div><b>🔥</b><span>King</span></div></div>
-<a class="ig-btn" href="https://instagram.com/bangcats.id" target="_blank">📸 @bangcats.id</a>
-<a class="ig-btn2" href="https://instagram.com/__kerass" target="_blank">📸 @__kerass</a>
-<button onclick="tutupOwner()">Mulai Chat</button>
-<button class="tutup" onclick="tutupOwner()">Tutup</button>
-</div>
-</div>
-
-<div id="popupMusik" onclick="tutupMusik()">
-<div class="musik-card" onclick="event.stopPropagation()">
-<h3>🎵 Lagu KING BANGCATS</h3>
-<p>Putar otomatis, Bos.</p>
-<button onclick="document.getElementById('pilihLagu').click()" style="width:100%;background:#00a884;border:none;padding:12px;border-radius:20px;font-weight:700;margin-bottom:10px">📂 Ganti / Pilih Lagu Dari HP</button>
-<div style="background:#111;padding:12px;border-radius:12px;display:flex;align-items:center;gap:10px"><div style="font-size:24px">🎵</div><div style="flex:1"><b style="font-size:13px">King Bangkets E Ai - Selalu di Sini</b><br><span style="font-size:11px;color:#ccc">Catur K.A • KING BANGCATS</span></div><button onclick="togglePlayBar()" style="background:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:700">▶ / ⏸</button></div>
-<div style="display:flex;gap:8px;margin-top:12px"><button onclick="stopMusik()" style="flex:1;background:#2a3942;color:#fff;border:none;padding:12px;border-radius:25px">⏹ Stop</button><button onclick="tutupMusik()" style="flex:1;background:#00a884;color:#000;border:none;padding:12px;border-radius:25px;font-weight:700">Tutup</button></div>
-</div>
-</div>
-
-<div id="previewFoto">
-<div class="efek-top">
-<button onclick="tutupPreview()">Batal</button>
-<b>Efek</b>
-<button onclick="kirimFotoFiltered()">Selesai</button>
-</div>
-<div class="efek-foto"><img id="imgPreview" src=""></div>
-<div id="kategoriRow" class="efek-kategori"></div>
-<div id="efekRow" class="efek-list"></div>
-<div class="efek-search">
-<div class="cari">🔍 <input id="cariEfek" placeholder="Lihat semua efek" oninput="cariEfek()"></div>
-<button class="btn-edit" onclick="aiPilihFilter()">✎</button>
-</div>
-<div class="efek-aksi">
-<button onclick="downloadFoto()" style="background:#1c1c1c;color:#fff">⬇ Download</button>
-<button onclick="kirimFotoFiltered()" style="background:#fff;color:#000">➤ Kirim</button>
-</div>
-</div>
-
+<div id="overlayLagu"><div class="overlay-card"><div class="big">🎵</div><h2>KING BANGCATS</h2><p>Pencet buat masuk, Bos.<br>Lagunya langsung putar otomatis, Bos. 🔥</p><button onclick="nyalainLaguPertama()">▶ MASUK + PUTAR LAGU</button><button class="pilih" onclick="document.getElementById('pilihLagu').click()">📂 Pilih Lagu Dari HP</button></div></div>
+<div class="header"><button class="back" onclick="kembali()">←</button><div class="logo" onclick="tampilOwner()"><img src="https://cdn.phototourl.com/anon/2026-11-25-0c14f49f-6749-4bc1-9102-8715cec43d89.jpg"></div><div class="tengah" onclick="tampilOwner()"><b>KING BANGCATS <span class="centang-biru">✓</span></b><span id="statusTxt">Online</span></div><button class="btn-musik" onclick="bukaMusik()">🎵</button><button class="btn-hapus" onclick="hapus()">🗑️</button></div>
+<div id="chat"><div class="tgl"><span>HARI INI</span></div><div class="bubble ai">Woy Bos! Akhirnya nongol juga, Bos! 😹<br><br>Mau dibantu apa, Bos?<br><br>Ketik <b>owner</b> buat liat pembuat gue + IG nya, Bos.<br>Ketik <b>lagu</b> buat muter lagu, Bos. 🎵</div></div>
+<div id="barLagu" onclick="bukaMusik()"><div class="cover">🎵</div><div style="flex:1;min-width:0"><b id="barJudul">King Bangkets E Ai - Selalu di Sini</b><span id="barPenyanyi">Catur K.A • KING BANGCATS</span></div><button id="btnPlayBar" onclick="event.stopPropagation();togglePlayBar()">⏸</button><button class="btn-next" onclick="event.stopPropagation();nextLagu()" style="background:#2a3942;color:#fff">⏭</button></div>
+<div class="input-wrap"><div id="menuJarum"><button onclick="pilihGaleri()">🖼️ Galeri</button><button onclick="pilihKamera()">📷 Kamera</button><button onclick="tampilOwner()">Owner</button><button onclick="bukaMusik()">🎵 Lagu</button></div><div class="input-box"><div class="input-in"><button class="emoji" type="button" onclick="tambahEmoji('😹')">☺</button><input id="tanya" placeholder="Ketik pesan..." autocomplete="off"><button class="jarum" type="button" onclick="toggleMenu()">📎</button></div><button class="btn-bulat mic" id="btnAksi" type="button" onclick="kirimChat()">➤</button></div><div class="kecil">King Bangcats by Catur K.A</div></div>
+<div id="ownerBox" onclick="tutupOwner()"><div class="owner-card" onclick="event.stopPropagation()"><div class="garis"></div><img src="https://cdn.phototourl.com/anon/2026-11-25-0c14f49f-6749-4bc1-9102-8715cec43d89.jpg"><div class="job">OWNER • CREATOR</div><p>Dibuat dari nol sama <b>👑 Catur K.A</b>.<br>King Bangcats, Bos.<br>Follow IG nya, Bos.</p><div class="mini"><div><b>Owner</b><span>Owner</span></div><div><b>📸</b><span>IG</span></div><div><b>🔥</b><span>King</span></div></div><a class="ig-btn" href="https://instagram.com/bangcats.id" target="_blank">📸 @bangcats.id</a><a class="ig-btn2" href="https://instagram.com/__kerass" target="_blank">📸 @__kerass</a><button onclick="tutupOwner()">Mulai Chat</button><button class="tutup" onclick="tutupOwner()">Tutup</button></div></div>
+<div id="popupMusik" onclick="tutupMusik()"><div class="musik-card" onclick="event.stopPropagation()"><h3>🎵 Lagu KING BANGCATS</h3><p>Putar otomatis, Bos.</p><button onclick="document.getElementById('pilihLagu').click()" style="width:100%;background:#00a884;border:none;padding:12px;border-radius:20px;font-weight:700;margin-bottom:10px">📂 Ganti / Pilih Lagu Dari HP</button><div style="background:#111;padding:12px;border-radius:12px;display:flex;align-items:center;gap:10px"><div style="font-size:24px">🎵</div><div style="flex:1"><b style="font-size:13px">King Bangkets E Ai - Selalu di Sini</b><br><span style="font-size:11px;color:#ccc">Catur K.A • KING BANGCATS</span></div><button onclick="togglePlayBar()" style="background:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:700">▶ / ⏸</button></div><div style="display:flex;gap:8px;margin-top:12px"><button onclick="stopMusik()" style="flex:1;background:#2a3942;color:#fff;border:none;padding:12px;border-radius:25px">⏹ Stop</button><button onclick="tutupMusik()" style="flex:1;background:#00a884;color:#000;border:none;padding:12px;border-radius:25px;font-weight:700">Tutup</button></div></div></div>
 <input type="file" id="pilihLagu" accept="audio/*" style="display:none">
-<input type="file" id="pilihGambar" accept="image/*" style="display:none">
-<input type="file" id="pilihKamera" accept="image/*" capture="environment" style="display:none">
 <audio id="audioPlayer" src="https://raw.githubusercontent.com/caturka/24jam/main/King%20Bangkets%20E%20Ai%20-%20Selalu%20di%20Sini%20-%20Treblo.mp3" preload="auto" loop></audio>
-
 <script>
 var audio=document.getElementById('audioPlayer');
-var RENDER_URL = 'https://zeronrender.onrender.com';
+var RENDER_URL = 'https://two4jam.onrender.com';
 var riwayatChat = [];
-var fotoURL = '';
-var fotoFilter = 'none';
-var fotoAIMode = '';
-var kategoriAktif = 'Spotlight';
-var efekAktif = null;
-var KATEGORI = ['Spotlight','Personalized','Film Effects','Pencahayaan','Utilities','Worlds','Busana','Styling','Festive','Color & Tone','Everyday','Nostalgia','Surreal','Karakter','Special Effects'];
-var EFEK = [
-{id:'film-hp', nama:'Film H-P', kat:'Nostalgia', filter:'grayscale(1) contrast(1.2)', emoji:'✦'},
-{id:'lampu-kilat', nama:'Lampu kilat', kat:'Pencahayaan', filter:'brightness(1.4) contrast(1.3)', emoji:'✦'},
-{id:'tanda-terima', nama:'Tanda terima', kat:'Utilities', filter:'grayscale(0.8) contrast(1.1) brightness(1.1)', emoji:'✦'},
-{id:'senja-lofi', nama:'Senja lofi', kat:'Color & Tone', filter:'sepia(0.6) brightness(0.95) saturate(1.2)', emoji:'✦'},
-{id:'surreal-1', nama:'Surreal dream', kat:'Surreal', filter:'saturate(1.8) hue-rotate(20deg) contrast(1.2)', emoji:'✦'},
-{id:'karakter-1', nama:'Karakter kartun', kat:'Karakter', filter:'saturate(1.5) contrast(1.3)', emoji:'✦'},
-{id:'anime', nama:'Anime', kat:'Karakter', filter:'saturate(1.6) contrast(1.25) brightness(1.1)', emoji:'🍥'},
-{id:'pixar', nama:'3D Pixar', kat:'Karakter', filter:'brightness(1.15) saturate(1.3)', emoji:'🧸'},
-{id:'cat-air', nama:'Cat Air', kat:'Styling', filter:'saturate(1.2) brightness(1.1) contrast(0.95)', emoji:'🎨'},
-{id:'popart', nama:'Pop Art', kat:'Styling', filter:'saturate(2) contrast(1.5)', emoji:'💥'},
-{id:'sketsa', nama:'Sketsa', kat:'Film Effects', filter:'grayscale(1) contrast(1.6)', emoji:'✏️'},
-{id:'komik', nama:'Komik', kat:'Film Effects', filter:'saturate(1.4) contrast(1.4)', emoji:'💬'},
-{id:'film-jadul', nama:'Film Jadul', kat:'Film Effects', filter:'sepia(0.4) contrast(1.1)', emoji:'🎞️'},
-{id:'cyberpunk', nama:'Cyberpunk', kat:'Worlds', filter:'hue-rotate(40deg) saturate(1.6) contrast(1.2)', emoji:'🌃'},
-{id:'vintage', nama:'Vintage', kat:'Nostalgia', filter:'sepia(0.5) brightness(1.05)', emoji:'📻'},
-{id:'bw', nama:'Hitam Putih', kat:'Everyday', filter:'grayscale(1)', emoji:'⚫'},
-{id:'glow', nama:'Glow', kat:'Everyday', filter:'brightness(1.2) saturate(1.2)', emoji:'🌸'},
-{id:'festive', nama:'Festive ceria', kat:'Festive', filter:'saturate(1.7) brightness(1.15)', emoji:'🎉'},
-{id:'busana', nama:'Busana retro', kat:'Busana', filter:'sepia(0.3) saturate(1.3)', emoji:'👗'},
-{id:'personal', nama:'Personal AI', kat:'Personalized', filter:'brightness(1.1) contrast(1.15) saturate(1.3)', emoji:'✨'},
-{id:'spotlight', nama:'Spotlight', kat:'Spotlight', filter:'contrast(1.2) brightness(1.05)', emoji:'🔦'},
-{id:'special', nama:'Special FX', kat:'Special Effects', filter:'hue-rotate(90deg) saturate(1.8)', emoji:'🪄'}
-];
-function nyalainLaguPertama(){
-  document.getElementById('overlayLagu').style.display='none';
-  audio.play().then(function(){document.getElementById('btnPlayBar').innerText='⏸';}).catch(function(){});
-}
-function togglePlayBar(){
-  if(audio.paused){audio.play();document.getElementById('btnPlayBar').innerText='⏸';}
-  else{audio.pause();document.getElementById('btnPlayBar').innerText='▶';}
-}
+function nyalainLaguPertama(){document.getElementById('overlayLagu').style.display='none';audio.play().then(function(){document.getElementById('btnPlayBar').innerText='⏸';}).catch(function(){});}
+function togglePlayBar(){if(audio.paused){audio.play();document.getElementById('btnPlayBar').innerText='⏸';}else{audio.pause();document.getElementById('btnPlayBar').innerText='▶';}}
 function nextLagu(){audio.currentTime=0;audio.play();}
 function stopMusik(){audio.pause();audio.currentTime=0;document.getElementById('btnPlayBar').innerText='▶';}
 function bukaMusik(){document.getElementById('popupMusik').style.display='flex';}
@@ -236,165 +93,13 @@ function toggleMenu(){var m=document.getElementById('menuJarum');m.style.display
 function kembali(){}
 function hapus(){if(confirm('Hapus chat, Bos?')){document.getElementById('chat').innerHTML='<div class="tgl"><span>HARI INI</span></div>';riwayatChat=[];}}
 function tambahEmoji(e){document.getElementById('tanya').value+=e;}
-function pilihGaleri(){document.getElementById('menuJarum').style.display='none';document.getElementById('pilihGambar').click();}
-function pilihKamera(){document.getElementById('menuJarum').style.display='none';document.getElementById('pilihKamera').click();}
-function bukaPreview(file){
-  if(!file) return;
-  fotoURL = URL.createObjectURL(file);
-  fotoFilter = 'none'; fotoAIMode = '';
-  var img = document.getElementById('imgPreview');
-  img.src = fotoURL; img.style.filter = 'none';
-  kategoriAktif='Spotlight'; efekAktif=null;
-  renderKategori(); renderEfek();
-  document.getElementById('previewFoto').style.display='flex';
-}
-function tutupPreview(){document.getElementById('previewFoto').style.display='none';}
-function renderKategori(){
-  var row=document.getElementById('kategoriRow');
-  row.innerHTML='';
-  KATEGORI.forEach(function(k){
-    var b=document.createElement('button');
-    b.innerText=k;
-    if(k===kategoriAktif) b.className='aktif';
-    b.onclick=function(){kategoriAktif=k; renderKategori(); renderEfek();};
-    row.appendChild(b);
-  });
-}
-function renderEfek(filterCari){
-  var row=document.getElementById('efekRow');
-  row.innerHTML='';
-  var list=EFEK.filter(function(e){
-    if(filterCari) return e.nama.toLowerCase().includes(filterCari.toLowerCase());
-    if(kategoriAktif==='Spotlight') return true;
-    return e.kat===kategoriAktif || e.kat==='Spotlight';
-  });
-  if(list.length===0) list=EFEK;
-  list.forEach(function(e){
-    var div=document.createElement('div');
-    div.className='efek-card'+(efekAktif===e.id?' aktif':'');
-    div.innerHTML='<div class="thumb"><span class="bintang">'+e.emoji+'</span><img src="'+fotoURL+'" style="filter:'+e.filter+'"></div><b>'+e.nama+'</b><span>Instagram</span>';
-    div.onclick=function(){pilihEfek(e.id);};
-    row.appendChild(div);
-  });
-}
-function cariEfek(){
-  var v=document.getElementById('cariEfek').value;
-  renderEfek(v);
-}
-function pilihEfek(id){
-  var e=EFEK.find(function(x){return x.id===id});
-  efekAktif=id; fotoFilter=e.filter; fotoAIMode='';
-  document.getElementById('imgPreview').src=fotoURL;
-  document.getElementById('imgPreview').style.filter=e.filter;
-  renderEfek(document.getElementById('cariEfek').value);
-}
-function terapkanGaya(mode, cb){
-  var img=new Image();
-  img.onload=function(){
-    var c=document.createElement('canvas');
-    var scale=Math.min(1,900/img.naturalWidth);
-    c.width=img.naturalWidth*scale; c.height=img.naturalHeight*scale;
-    var ctx=c.getContext('2d');
-    ctx.drawImage(img,0,0,c.width,c.height);
-    cb(c.toDataURL('image/jpeg',0.92));
-  };
-  img.src=fotoURL;
-}
-async function aiPilihFilter(){
-  var acak=EFEK[Math.floor(Math.random()*EFEK.length)];
-  pilihEfek(acak.id);
-}
-function buatFotoFiltered(callback){
-  var img=document.getElementById('imgPreview');
-  var c=document.createElement('canvas');
-  c.width=img.naturalWidth; c.height=img.naturalHeight;
-  var ctx=c.getContext('2d');
-  ctx.filter=fotoFilter;
-  ctx.drawImage(img,0,0);
-  callback(c.toDataURL('image/jpeg',0.9));
-}
-function downloadFoto(){
-  buatFotoFiltered(function(data){
-    var a=document.createElement('a');
-    a.href=data; a.download='king-bangcats-efek.jpg'; a.click();
-  });
-}
-function kirimFotoFiltered(){
-  buatFotoFiltered(function(data){
-    tutupPreview();
-    var chat=document.getElementById('chat');
-    var jam=jamSekarang();
-    var d=document.createElement('div');d.className='bubble lu';
-    d.innerHTML='<img src="'+data+'"><br><button onclick="downloadChatFoto(this)" style="background:#2a3942;color:#fff;border:none;padding:6px 12px;border-radius:20px;font-size:12px;margin-top:4px">⬇ Download</button><span class="jam">'+jam+' <span class="centang-biru">✓✓</span></span>';
-    chat.appendChild(d);
-    window.scrollTo(0,document.body.scrollHeight);
-    var r=document.createElement('div');r.className='bubble ai';r.innerHTML='Wih, efek nya cakep, Bos! 😹🔥 Kayak di IG, kan, Bos!<span class="jam">'+jam+'</span>';chat.appendChild(r);
-    window.scrollTo(0,document.body.scrollHeight);
-  });
-}
-function downloadChatFoto(btn){
-  var img=btn.parentElement.querySelector('img');
-  var a=document.createElement('a');
-  a.href=img.src; a.download='king-bangcats-efek.jpg'; a.click();
-}
-function jamSekarang(){
-  var n=new Date();
-  return n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');
-}
-function jawabPintar(t, txtAsli){
-  t=t.toLowerCase();
-  if(t.includes('owner') || t.includes('pembuat') || t.includes('catur')){
-    setTimeout(tampilOwner,400);
-    return 'Ini owner gue, Bos. 👑<br><b>Catur K.A</b>, Bos.<br>IG nya <b>@bangcats.id</b> sama <b>@__kerass</b>, Bos.<br>Follow, Bos!';
-  }
-  if(t.includes('lagu') || t.includes('musik') || t.includes('nyanyi')){
-    audio.play().catch(function(){});
-    setTimeout(bukaMusik,400);
-    return 'Siap, Bos! 🎵<br>Lagu <b>King Bangkets E Ai - Selalu di Sini</b> lagi muter, Bos.<br>Enak, kan, Bos? 🔥';
-  }
-  return null;
-}
-async function tanyaRender(pesanUser){
-  riwayatChat.push({role:"user", content:pesanUser});
-  if(riwayatChat.length>10) riwayatChat=riwayatChat.slice(-10);
-  try{
-    var res=await fetch(RENDER_URL+"/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:riwayatChat})});
-    var data=await res.json();
-    var jawaban=data.reply||(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content)||"";
-    if(!jawaban) return "Waduh, Bos. Render bales kosong, Bos.";
-    riwayatChat.push({role:"assistant",content:jawaban});
-    return jawaban.replace(/\n/g,"<br>");
-  }catch(e){return "Waduh, Bos. Render gak nyambung, Bos. "+e.message;}
-}
-async function kirimChat(){
-  var inp=document.getElementById('tanya');var txt=inp.value.trim();if(!txt)return;
-  var chat=document.getElementById('chat');
-  var jam=jamSekarang();
-  var d=document.createElement('div');d.className='bubble lu';d.innerHTML=txt+'<span class="jam">'+jam+' <span class="centang-biru">✓✓</span></span>';chat.appendChild(d);
-  inp.value='';
-  document.getElementById('statusTxt').innerText='Mengetik...';
-  var lokal=jawabPintar(txt,txt);
-  if(lokal){
-    document.getElementById('statusTxt').innerText='Online';
-    var r=document.createElement('div');r.className='bubble ai';r.innerHTML=lokal+'<span class="jam">'+jam+'</span>';chat.appendChild(r);
-    window.scrollTo(0,document.body.scrollHeight);
-    return;
-  }
-  var jawaban=await tanyaRender(txt);
-  document.getElementById('statusTxt').innerText='Online';
-  var r2=document.createElement('div');r2.className='bubble ai';r2.innerHTML=jawaban+'<span class="jam">'+jam+'</span>';chat.appendChild(r2);
-  window.scrollTo(0,document.body.scrollHeight);
-}
+function pilihGaleri(){alert('Pilih galeri, Bos.');}
+function pilihKamera(){alert('Buka kamera, Bos.');}
+function jamSekarang(){var n=new Date();return n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');}
+function jawabPintar(t, txtAsli){t = t.toLowerCase();if(t.includes('owner') || t.includes('pembuat') || t.includes('catur')){setTimeout(tampilOwner, 400);return 'Ini owner gue, Bos. 👑<br><b>Catur K.A</b>, Bos.<br>IG nya <b>@bangcats.id</b> sama <b>@__kerass</b>, Bos.<br>Follow, Bos!';}if(t.includes('lagu') || t.includes('musik') || t.includes('nyanyi')){audio.play().catch(function(){});setTimeout(bukaMusik, 400);return 'Siap, Bos! 🎵<br>Lagu <b>King Bangkets E Ai - Selalu di Sini</b> lagi muter, Bos.<br>Enak, kan, Bos? 🔥';}return null;}
+async function tanyaRender(pesanUser){riwayatChat.push({role:"user", content:pesanUser});if(riwayatChat.length > 10) riwayatChat = riwayatChat.slice(-10);try{var res = await fetch(RENDER_URL + "/api/chat", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({messages:riwayatChat})});var data = await res.json();var jawaban = data.reply || (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || "";if(!jawaban) return "Waduh, Bos. Render bales kosong, Bos.";riwayatChat.push({role:"assistant", content:jawaban});return jawaban.replace(/\n/g,"<br>");}catch(e){return "Waduh, Bos. Render gak nyambung, Bos. " + e.message;}}
+async function kirimChat(){var inp=document.getElementById('tanya');var txt=inp.value.trim();if(!txt)return;var chat=document.getElementById('chat');var jam = jamSekarang();var d=document.createElement('div');d.className='bubble lu';d.innerHTML=txt+'<span class="jam">'+jam+' <span class="centang-biru">✓✓</span></span>';chat.appendChild(d);inp.value='';document.getElementById('statusTxt').innerText='Mengetik...';var lokal = jawabPintar(txt, txt);if(lokal){document.getElementById('statusTxt').innerText='Online';var r=document.createElement('div');r.className='bubble ai';r.innerHTML=lokal+'<span class="jam">'+jam+'</span>';chat.appendChild(r);window.scrollTo(0,document.body.scrollHeight);return;}var jawaban = await tanyaRender(txt);document.getElementById('statusTxt').innerText='Online';var r2=document.createElement('div');r2.className='bubble ai';r2.innerHTML=jawaban+'<span class="jam">'+jam+'</span>';chat.appendChild(r2);window.scrollTo(0,document.body.scrollHeight);}
 document.getElementById('tanya').addEventListener('keydown',function(e){if(e.key==='Enter')kirimChat();});
-document.getElementById('pilihLagu').addEventListener('change',function(e){
-  var file=e.target.files[0];if(!file)return;
-  var url=URL.createObjectURL(file);
-  audio.src=url;audio.play();
-  document.getElementById('overlayLagu').style.display='none';
-  document.getElementById('btnPlayBar').innerText='⏸';
-  document.getElementById('barJudul').innerText=file.name;
-});
-document.getElementById('pilihGambar').addEventListener('change',function(e){bukaPreview(e.target.files[0]);e.target.value='';});
-document.getElementById('pilihKamera').addEventListener('change',function(e){bukaPreview(e.target.files[0]);e.target.value='';});
+document.getElementById('pilihLagu').addEventListener('change',function(e){var file=e.target.files[0];if(!file)return;var url=URL.createObjectURL(file);audio.src=url;audio.play();document.getElementById('overlayLagu').style.display='none';document.getElementById('btnPlayBar').innerText='⏸';document.getElementById('barJudul').innerText=file.name;});
 </script>
 </body></html>
